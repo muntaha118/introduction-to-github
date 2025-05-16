@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>Custom Numeric with Full Online References</title>
+    <id>http://www.zotero.org/styles/custom-numeric-online</id>
+    <link href="http://www.zotero.org/styles/custom-numeric-online" rel="self"/>
+    <author>
+      <name>OpenAI ChatGPT</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="generic-base"/>
+    <updated>2025-05-16T00:00:00+00:00</updated>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name and="text" delimiter=", " initialize-with=". " name-as-sort-order="first"/>
+      <label form="short" prefix=", " text-case="lowercase" suffix="."/>
+    </names>
+  </macro>
+
+  <macro name="editor">
+    <names variable="editor">
+      <name and="text" delimiter=", " initialize-with=". " name-as-sort-order="first"/>
+      <label form="short" prefix=" (" suffix="., ed.)"/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title" font-style="italic"/>
+  </macro>
+
+  <macro name="container-title">
+    <text variable="container-title" font-style="italic"/>
+  </macro>
+
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <text variable="edition" suffix=" edn."/>
+      </if>
+      <else>
+        <text variable="edition" suffix=" edn."/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+      <text variable="issued"/>
+    </group>
+  </macro>
+
+  <macro name="online">
+    <text value="[Online]" suffix=", "/>
+  </macro>
+
+  <macro name="page">
+    <group delimiter=": ">
+      <label variable="page" form="short"/>
+      <text variable="page"/>
+    </group>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="4" et-al-use-first="3" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <group delimiter=". ">
+        <choose>
+          <if variable="author">
+            <text macro="author"/>
+          </if>
+          <else-if variable="editor">
+            <text macro="editor"/>
+          </else-if>
+        </choose>
+        <text macro="title"/>
+        <text macro="online"/>
+        <group delimiter=". ">
+          <text macro="container-title"/>
+          <group delimiter=", ">
+            <text macro="edition"/>
+            <text macro="publisher"/>
+          </group>
+          <text macro="page"/>
+        </group>
+      </group>
+    </layout>
+  </bibliography>
+</style>
